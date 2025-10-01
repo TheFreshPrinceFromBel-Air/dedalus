@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -20,7 +20,14 @@ class TextAnalyzerControllerTest {
 
     @Test
     void testVowelCountingEndpoint() throws Exception {
-        mockMvc.perform(get("/Lorem%20ipsum%20dolor%20sit%20amet/VOWELS")
+        mockMvc.perform(post("/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "text": "Lorem ipsum dolor sit amet",
+                                    "mode": "VOWELS"
+                                }
+                                """)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.O", is(3)))

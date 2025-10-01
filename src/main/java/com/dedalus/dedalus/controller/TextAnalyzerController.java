@@ -12,8 +12,11 @@ import java.util.Map;
 public class TextAnalyzerController {
     private final TextAnalyzer textAnalyzer;
 
-    @GetMapping("/{text}/{mode}")
-    public Map<String, Integer> analyzeText(@PathVariable String text, @PathVariable TextAnalyzer.Mode mode) {
-        return textAnalyzer.analyzeText(text, mode);
+    public record AnalyzeTextRequest(String text, TextAnalyzer.Mode mode) {
+    }
+
+    @PostMapping("/")
+    public Map<String, Integer> analyzeText(@RequestBody AnalyzeTextRequest analyzeTextRequest) {
+        return textAnalyzer.analyzeText(analyzeTextRequest.text, analyzeTextRequest.mode);
     }
 }

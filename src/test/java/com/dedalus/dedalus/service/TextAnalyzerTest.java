@@ -69,6 +69,14 @@ class TextAnalyzerTest {
         assertEquals(1, result.get("Ü"));
     }
 
+
+    @Test
+    void testSpecialConsonants(){
+        Map<String, Integer> result = textAnalyzer.analyzeText("ß", TextAnalyzer.Mode.CONSONANTS);
+        assertEquals(1, result.size());
+        assertEquals(1, result.get("ß"));
+    }
+
     @Test
     void testNonLetterCharactersIgnored() {
         Map<String, Integer> result = textAnalyzer.analyzeText("123 !?.,", TextAnalyzer.Mode.VOWELS);

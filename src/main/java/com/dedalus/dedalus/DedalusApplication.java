@@ -1,4 +1,4 @@
-package com.github.thefreshprincefrombelair.dedalus;
+package com.dedalus.dedalus;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

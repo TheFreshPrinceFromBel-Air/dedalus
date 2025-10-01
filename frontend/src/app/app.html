@@ -1,0 +1,66 @@
+<h1>Vowel and Consonant Counter</h1>
+
+<textarea id="inputText"
+          [(ngModel)]="inputText"
+          rows="4"
+          cols="50"
+          placeholder="Enter your text here...">
+</textarea>
+
+<div>
+    <label>
+        <input type="radio"
+               name="mode"
+               [value]="Mode.VOWELS"
+               [(ngModel)]="mode"/>
+        Vowels
+    </label>
+    <label>
+        <input type="radio"
+               name="mode"
+               [value]="Mode.CONSONANTS"
+               [(ngModel)]="mode"/>
+        Consonants
+    </label>
+</div>
+
+<div>
+    <label>
+        <input type="checkbox"
+               [(ngModel)]="offlineMode"/>
+        Offline Mode
+    </label>
+</div>
+
+<div>
+    <button (click)="analyze()"
+            [disabled]="loading">
+        Analyze
+    </button>
+</div>
+
+@if (loading) {
+    <div>
+        <p>
+            Analyzing text, please wait...
+        </p>
+    </div>
+}
+
+@if (errorMessage) {
+    <div>
+        <p style="color: red;">
+            {{ errorMessage }}
+        </p>
+    </div>
+}
+
+<div>
+    <label for="output"><h2>Result:</h2></label>
+    <textarea id="output"
+              [value]="formattedResult()"
+              rows="6"
+              cols="50"
+              readonly>
+    </textarea>
+</div>

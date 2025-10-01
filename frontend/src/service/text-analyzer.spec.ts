@@ -1,8 +1,8 @@
 import {TestBed} from '@angular/core/testing';
 
 import {TextAnalyzer} from './text-analyzer';
-import {AnalysisResult} from "../model/analysis-result";
-import {AnalyzeTextMode} from "../model/analyze-text-mode";
+import {LetterCountingResult} from "../model/letter-counting-result";
+import {LetterCountMode} from "../model/letter-count-mode";
 
 describe('TextAnalyzer', () => {
     let service: TextAnalyzer;
@@ -12,13 +12,13 @@ describe('TextAnalyzer', () => {
         service = TestBed.inject(TextAnalyzer);
     });
 
-    function getKeys(result: AnalysisResult) {
+    function getKeys(result: LetterCountingResult) {
         return Object.keys(result);
     }
 
     it('should count vowels correctly', () => {
         const input = 'Lorem ipsum dolor sit amet';
-        const result = service.analyzeText(input, AnalyzeTextMode.VOWELS);
+        const result = service.countLetters(input, LetterCountMode.VOWELS);
 
         expect(getKeys(result).length).toBe(5);
         expect(result['O']).toBe(3);
@@ -30,7 +30,7 @@ describe('TextAnalyzer', () => {
 
     it('should count consonants correctly', () => {
         const input = 'Lorem ipsum dolor sit amet';
-        const result = service.analyzeText(input, AnalyzeTextMode.CONSONANTS);
+        const result = service.countLetters(input, LetterCountMode.CONSONANTS);
 
         expect(getKeys(result).length).toBe(7);
         expect(result['L']).toBe(2);
@@ -44,7 +44,7 @@ describe('TextAnalyzer', () => {
 
     it('should handle mixed case for vowels', () => {
         const input = 'AeIoU aeiou';
-        const result = service.analyzeText(input, AnalyzeTextMode.VOWELS);
+        const result = service.countLetters(input, LetterCountMode.VOWELS);
 
         expect(getKeys(result).length).toBe(5);
         expect(result['A']).toBe(2);
@@ -56,7 +56,7 @@ describe('TextAnalyzer', () => {
 
     it('should handle only consonants', () => {
         const input = 'BCDF bcdf';
-        const result = service.analyzeText(input, AnalyzeTextMode.CONSONANTS);
+        const result = service.countLetters(input, LetterCountMode.CONSONANTS);
 
         expect(getKeys(result).length).toBe(4);
         expect(result['B']).toBe(2);
@@ -67,7 +67,7 @@ describe('TextAnalyzer', () => {
 
     it('should handle special vowels', () => {
         const input = 'ÁÉÜ';
-        const result = service.analyzeText(input, AnalyzeTextMode.VOWELS);
+        const result = service.countLetters(input, LetterCountMode.VOWELS);
 
         expect(getKeys(result).length).toBe(3);
         expect(result['Á']).toBe(1);
@@ -78,7 +78,7 @@ describe('TextAnalyzer', () => {
 
     it('should handle special consonants', () => {
         const input = 'ß';
-        const result = service.analyzeText(input, AnalyzeTextMode.CONSONANTS);
+        const result = service.countLetters(input, LetterCountMode.CONSONANTS);
 
         expect(getKeys(result).length).toBe(1);
         expect(result['ß']).toBe(1);
@@ -86,13 +86,13 @@ describe('TextAnalyzer', () => {
 
     it('should ignore non-letter characters', () => {
         const input = '123 !?.,';
-        const result = service.analyzeText(input, AnalyzeTextMode.VOWELS);
+        const result = service.countLetters(input, LetterCountMode.VOWELS);
 
         expect(getKeys(result).length).toBe(0);
     });
 
     it('should return empty object for empty string', () => {
-        const result = service.analyzeText('', AnalyzeTextMode.CONSONANTS);
+        const result = service.countLetters('', LetterCountMode.CONSONANTS);
 
         expect(getKeys(result).length).toBe(0);
     });

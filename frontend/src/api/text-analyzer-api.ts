@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AnalysisResult} from "../model/analysis-result";
+import {LetterCountingResult} from "../model/letter-counting-result";
 import {AnalyzeTextRequest} from "../model/analyze-text-request";
 
 @Injectable({
@@ -11,7 +11,7 @@ export class TextAnalyzerAPI {
 
     constructor(private http: HttpClient) {}
 
-    analyzeText(request: AnalyzeTextRequest) {
-        return this.http.post<AnalysisResult>(`${this.apiUrl}/`, request);
+    countLetters(requestData: AnalyzeTextRequest) {
+        return this.http.post<LetterCountingResult>(`${this.apiUrl}/`, requestData);
     }
 }

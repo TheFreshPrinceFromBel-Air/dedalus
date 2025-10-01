@@ -12,11 +12,11 @@ import java.util.Map;
 public class TextAnalyzerController {
     private final TextAnalyzer textAnalyzer;
 
-    public record AnalyzeTextRequest(String text, TextAnalyzer.Mode mode) {
+    public record CountLettersRequest(String text, TextAnalyzer.LetterCountMode mode) {
     }
 
     @PostMapping("/")
-    public Map<String, Integer> analyzeText(@RequestBody AnalyzeTextRequest analyzeTextRequest) {
-        return textAnalyzer.analyzeText(analyzeTextRequest.text, analyzeTextRequest.mode);
+    public Map<String, Integer> countLetters(@RequestBody CountLettersRequest countLettersRequest) {
+        return textAnalyzer.countLetters(countLettersRequest.text, countLettersRequest.mode);
     }
 }

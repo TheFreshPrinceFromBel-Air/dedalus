@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
  * Counts can be either for vowels or consonants, depending on the selected mode.
  * Only supports Latin scripts.
  *
- * <p>Use {@link #analyzeText(String, Mode)} to perform the analysis.</p>
+ * <p>Use {@link #countLetters(String, LetterCountMode)} to perform the analysis.</p>
  */
 @Service
 public class TextAnalyzer {
-    public enum Mode {
+    public enum LetterCountMode {
         VOWELS,
         CONSONANTS
     }
@@ -29,21 +29,21 @@ public class TextAnalyzer {
      * Only supports Latin scripts.
      *
      * @param input the text to analyze
-     * @param mode {@link Mode#VOWELS} to count vowels, {@link Mode#CONSONANTS} to count consonants
+     * @param mode {@link LetterCountMode#VOWELS} to count vowels, {@link LetterCountMode#CONSONANTS} to count consonants
      * @return a map of letters to their occurrence count
      */
-    public Map<String, Integer> analyzeText(@NonNull String input, @NonNull Mode mode) {
+    public Map<String, Integer> countLetters(@NonNull String input, @NonNull TextAnalyzer.LetterCountMode mode) {
         return input.chars().mapToObj(character -> (char) character)
                 .filter(Character::isLetter)
                 .map(Character::toUpperCase)
-                .filter(character -> (mode == Mode.VOWELS) == isUpperCaseLetterAVowel(character))
+                .filter(character -> (mode == LetterCountMode.VOWELS) == isUpperCaseLetterAVowel(character))
                 .collect(Collectors.groupingBy(Object::toString, Collectors.summingInt(c -> 1)));
     }
 
-    private boolean isUpperCaseLetterAVowel(@NonNull Character character) {
+    private boolean isUpperCaseLetterAVowel(@NonNull Character upperCaseLetter) {
         List<Character> vowels = Arrays.asList('A', 'E', 'I', 'O', 'U');
         //Normalize Characters and removes the diacritic, may fail for non-Latin scripts
-        Character normalized = Normalizer.normalize(String.valueOf(character), Normalizer.Form.NFD)
+        Character normalized = Normalizer.normalize(String.valueOf(upperCaseLetter), Normalizer.Form.NFD)
                 .replaceAll("\\p{M}", "")
                 .toCharArray()[0];
         return vowels.contains(normalized);

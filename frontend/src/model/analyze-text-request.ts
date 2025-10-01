@@ -1,6 +1,6 @@
-import {AnalyzeTextMode} from "./analyze-text-mode";
+import {LetterCountMode} from "./letter-count-mode";
 
 export interface AnalyzeTextRequest {
     text: string;
-    mode: AnalyzeTextMode;
+    mode: LetterCountMode;
 }

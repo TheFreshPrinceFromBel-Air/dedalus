@@ -1,4 +1,4 @@
-export enum AnalyzeTextMode {
+export enum LetterCountMode {
     VOWELS = 'VOWELS',
     CONSONANTS = 'CONSONANTS',
 }

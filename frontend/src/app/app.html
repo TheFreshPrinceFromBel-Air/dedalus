@@ -12,14 +12,14 @@
         <input type="radio"
                name="mode"
                [value]="Mode.VOWELS"
-               [(ngModel)]="mode"/>
+               [(ngModel)]="textMode"/>
         Vowels
     </label>
     <label>
         <input type="radio"
                name="mode"
                [value]="Mode.CONSONANTS"
-               [(ngModel)]="mode"/>
+               [(ngModel)]="textMode"/>
         Consonants
     </label>
 </div>
@@ -33,9 +33,9 @@
 </div>
 
 <div>
-    <button (click)="analyze()"
+    <button (click)="countLetters()"
             [disabled]="loading">
-        Analyze
+        Count letters
     </button>
 </div>
 

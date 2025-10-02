@@ -1,66 +1,70 @@
-<h1>Vowel and Consonant Counter</h1>
+<div class="app-container">
+    <h1>Vowel and Consonant Counter</h1>
 
-<textarea id="inputText"
-          [(ngModel)]="inputText"
-          rows="4"
-          cols="50"
-          placeholder="Enter your text here...">
-</textarea>
-
-<div>
-    <label>
-        <input type="radio"
-               name="mode"
-               [value]="Mode.VOWELS"
-               [(ngModel)]="textMode"/>
-        Vowels
-    </label>
-    <label>
-        <input type="radio"
-               name="mode"
-               [value]="Mode.CONSONANTS"
-               [(ngModel)]="textMode"/>
-        Consonants
-    </label>
-</div>
-
-<div>
-    <label>
-        <input type="checkbox"
-               [(ngModel)]="offlineMode"/>
-        Offline Mode
-    </label>
-</div>
-
-<div>
-    <button (click)="countLetters()"
-            [disabled]="loading">
-        Count letters
-    </button>
-</div>
-
-@if (loading) {
-    <div>
-        <p>
-            Analyzing text, please wait...
-        </p>
-    </div>
-}
-
-@if (errorMessage) {
-    <div>
-        <p style="color: red;">
-            {{ errorMessage }}
-        </p>
-    </div>
-}
-
-<div>
-    <label for="output"><h2>Result:</h2></label>
-    <textarea id="output"
-              [value]="formattedResult()"
-              rows="6"
+    <textarea id="inputText"
+              [(ngModel)]="inputText"
+              rows="4"
               cols="50"
-              readonly>
+              placeholder="Enter your text here...">
     </textarea>
+
+    <div>
+        <label>
+            <input type="radio"
+                   name="mode"
+                   [value]="Mode.VOWELS"
+                   [(ngModel)]="textMode"/>
+            Vowels
+        </label>
+        <label>
+            <input type="radio"
+                   name="mode"
+                   [value]="Mode.CONSONANTS"
+                   [(ngModel)]="textMode"/>
+            Consonants
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox"
+                   [(ngModel)]="offlineMode"/>
+            Offline Mode
+        </label>
+    </div>
+
+    <div>
+        <button (click)="countLetters()"
+                [disabled]="loading">
+            Count letters
+        </button>
+    </div>
+
+    <div class="status-message"
+         [class.loading]="loading"
+         [class.error]="errorMessage">
+        @if (loading) {
+            <p>
+                Analyzing text, please wait...
+            </p>
+        }
+
+        @if (errorMessage) {
+            <p>
+                {{ errorMessage }}
+            </p>
+        }
+    </div>
+
+    <div>
+        <label for="output">
+            <h2>Result:</h2>
+        </label>
+        <textarea id="output"
+                  [value]="formattedResult()"
+                  rows="6"
+                  cols="50"
+                  readonly>
+        </textarea>
+    </div>
 </div>

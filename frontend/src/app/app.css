@@ -1,0 +1,77 @@
+.app-container {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 500px;
+    max-width: 90%;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    resize: none;
+    box-sizing: border-box;
+    transition: border 0.2s;
+}
+
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+div label {
+    margin-right: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.status-message {
+    min-height: 2rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.status-message.loading {
+    color: #555;
+}
+
+.status-message.error {
+    color: #d9534f;
+    font-weight: bold;
+}

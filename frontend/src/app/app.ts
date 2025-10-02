@@ -10,6 +10,7 @@ import {LetterCountMode} from "../model/letter-count-mode";
     imports: [
         FormsModule
     ],
+    styleUrl: "./app.css",
     templateUrl: './app.html'
 })
 export class App {
